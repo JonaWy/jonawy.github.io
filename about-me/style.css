@@ -1,0 +1,51 @@
+/* Dark theme */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #222;
+  color: white;
+  position: relative;
+}
+
+/* Centering elements */
+.wheel-container {
+  position: relative;
+  margin: 20px auto;
+}
+
+/* Arrow Indicator (Above and Rotated) */
+.arrow-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin-bottom: -20px; /* Move arrow closer to wheel */
+}
+
+.arrow {
+  font-size: 30px;
+  color: red;
+  transform: rotate(0deg); /* Rotate arrow downward */
+}
+
+/* Button Style */
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Style for result text */
+#result {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
