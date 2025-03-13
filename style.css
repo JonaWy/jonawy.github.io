@@ -1,9 +1,11 @@
 :root {
-  --primary: #2a699d;
-  --secondary: #1f6f8f;
-  --accent: #6ac1e9;
-  --background: #08172c;
-  --card: rgba(255, 255, 255, 0.1);
+  --primary: #1f6feb; /* Changed from #238636 to GitHub blue */
+  --secondary: #30363d;
+  --accent: #58a6ff;
+  --background: #0d1117;
+  --card: rgba(22, 27, 34, 0.8);
+  --text: #c9d1d9;
+  --border: #30363d;
 }
 
 body {
@@ -11,7 +13,7 @@ body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: var(--background);
-  color: white;
+  color: var(--text);
   display: flex;
   justify-content: center;
   padding: 2rem;
@@ -36,7 +38,8 @@ h1 {
 }
 
 .wheel-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--card);
+  border: 1px solid var(--border);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -89,7 +92,7 @@ h1 {
 button {
   background: var(--primary);
   color: white;
-  border: none;
+  border: 1px solid rgba(240, 246, 252, 0.1);
   padding: 1rem 2rem;
   font-size: 1.1rem;
   border-radius: 5px;
@@ -102,9 +105,10 @@ button {
 }
 
 button:hover {
-  background: var(--accent);
+  background: #2f81f7; /* Lighter GitHub blue for hover */
+  border-color: rgba(240, 246, 252, 0.1);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(106, 157, 233, 0.4);
+  box-shadow: 0 6px 20px rgba(31, 111, 235, 0.4);
 }
 
 button:active {
@@ -116,23 +120,24 @@ button:active {
   font-weight: 500;
   margin-top: 2rem;
   padding: 1rem;
-  background: rgba(8, 23, 44, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 5px;
   animation: fadeIn 0.5s ease;
   width: 300px;
   text-align: center;
   min-height: 2em;
+  color: var(--text);
 }
 
 /* Safari-specific fixes */
 @supports (-webkit-touch-callout: none) {
   #result {
-    background: rgba(8, 23, 44, 0.95);
+    background: var(--card);
   }
 
   .wheel-section {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--card);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -140,7 +145,7 @@ button:active {
   #result {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    background: rgba(8, 23, 44, 0.95);
+    background: var(--card);
   }
 }
 

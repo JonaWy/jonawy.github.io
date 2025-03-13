@@ -1,10 +1,10 @@
 // Restaurant options with unique colors
 const restaurants = [
-  { name: "Vulcano", color: "#2a9d8f" },
-  { name: "Grieche", color: "#264653" },
-  { name: "Can", color: "#e9c46a" },
-  { name: "Mr. Wasabi", color: "#f4a261" },
-  { name: "Mensa", color: "#e76f51" },
+  { name: "Vulcano", color: "#0d419d" }, // Darker blue
+  { name: "Grieche", color: "#1f6feb" }, // GitHub blue
+  { name: "Can", color: "#58a6ff" }, // Lighter blue
+  { name: "Mr. Wasabi", color: "#388bfd" }, // Medium blue
+  { name: "Mensa", color: "#79c0ff" }, // Lightest blue
 ];
 
 const canvas = document.getElementById("wheel");
@@ -30,7 +30,7 @@ function drawWheel() {
     ctx.arc(radius, radius, radius - 10, startAngle, endAngle);
     ctx.fillStyle = restaurants[i].color;
     ctx.fill();
-    ctx.strokeStyle = "rgb(10, 41, 82)";
+    ctx.strokeStyle = "#30363d"; // GitHub border color
     ctx.stroke();
 
     // Draw text
@@ -96,7 +96,7 @@ function spinWheel() {
 // Add confetti configuration
 const confetti = {
   particles: [],
-  colors: ["#2a699d", "#6ac1e9", "#ffffff", "#1f6f8f"],
+  colors: ["#0d419d", "#1f6feb", "#58a6ff", "#79c0ff"],
 
   createParticle() {
     return {
