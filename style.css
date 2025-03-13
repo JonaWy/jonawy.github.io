@@ -116,9 +116,8 @@ button:active {
   font-weight: 500;
   margin-top: 2rem;
   padding: 1rem;
-  background: rgba(8, 23, 44, 0.7); /* More opaque background for Safari */
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background: rgba(8, 23, 44, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   animation: fadeIn 0.5s ease;
   width: 300px;
@@ -129,11 +128,19 @@ button:active {
 /* Safari-specific fixes */
 @supports (-webkit-touch-callout: none) {
   #result {
-    background: rgba(8, 23, 44, 0.85); /* Even more opaque for Safari */
+    background: rgba(8, 23, 44, 0.95);
   }
 
   .wheel-section {
     background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  #result {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(8, 23, 44, 0.95);
   }
 }
 
