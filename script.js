@@ -106,3 +106,20 @@ function determineResult() {
 
 drawWheel(); // Initial wheel draw
 spinButton.addEventListener("click", spinWheel);
+
+// Add touch support
+spinButton.addEventListener("touchstart", function (e) {
+  e.preventDefault();
+  spinWheel();
+});
+
+// Prevent zooming on double tap
+document.addEventListener(
+  "touchstart",
+  function (e) {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  },
+  { passive: false }
+);
