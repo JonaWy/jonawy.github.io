@@ -93,6 +93,89 @@ function spinWheel() {
   animate();
 }
 
+// Add confetti configuration
+const confetti = {
+  particles: [],
+  colors: ["#2a699d", "#6ac1e9", "#ffffff", "#1f6f8f"],
+
+  createParticle() {
+    return {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * -100,
+      size: Math.random() * 8 + 4,
+      speedY: Math.random() * 3 + 2,
+      speedX: Math.random() * 6 - 3,
+      rotation: Math.random() * 360,
+      color: this.colors[Math.floor(Math.random() * this.colors.length)],
+    };
+  },
+
+  startConfetti() {
+    // Create confetti canvas if it doesn't exist
+    if (!this.canvas) {
+      this.canvas = document.createElement("canvas");
+      this.canvas.style.position = "fixed";
+      this.canvas.style.top = "0";
+      this.canvas.style.left = "0";
+      this.canvas.style.width = "100%";
+      this.canvas.style.height = "100%";
+      this.canvas.style.pointerEvents = "none";
+      this.canvas.style.zIndex = "1000";
+      document.body.appendChild(this.canvas);
+      this.ctx = this.canvas.getContext("2d");
+    }
+
+    // Set canvas size
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+
+    // Create initial particles
+    for (let i = 0; i < 150; i++) {
+      this.particles.push(this.createParticle());
+    }
+
+    // Start animation
+    if (!this.animating) {
+      this.animating = true;
+      this.animate();
+    }
+
+    // Stop after 3 seconds
+    setTimeout(() => {
+      this.particles = [];
+      this.animating = false;
+      this.canvas.remove();
+      this.canvas = null;
+    }, 3000);
+  },
+
+  animate() {
+    if (!this.animating) return;
+
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      p.y += p.speedY;
+      p.x += p.speedX;
+      p.rotation += 2;
+
+      this.ctx.save();
+      this.ctx.translate(p.x, p.y);
+      this.ctx.rotate((p.rotation * Math.PI) / 180);
+      this.ctx.fillStyle = p.color;
+      this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      this.ctx.restore();
+
+      if (p.y > this.canvas.height) {
+        this.particles.splice(i, 1);
+      }
+    }
+
+    requestAnimationFrame(() => this.animate());
+  },
+};
+
 // Function to determine the selected restaurant (Now based on the top position)
 function determineResult() {
   let degrees = angle % 360;
@@ -102,6 +185,7 @@ function determineResult() {
   let adjustedDegrees = (270 - degrees + 360) % 360; // changed from (degrees + 270) % 360
   let index = Math.floor(adjustedDegrees / sliceSize);
   resultText.textContent = "The wheel chose: " + restaurants[index].name;
+  confetti.startConfetti(); // Add confetti when result is shown
 }
 
 drawWheel(); // Initial wheel draw
