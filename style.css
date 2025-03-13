@@ -146,42 +146,113 @@ button:active {
 /* Mobile Optimization */
 @media screen and (max-width: 480px) {
   body {
-    padding: 1rem;
+    padding: 0.5rem;
+    min-height: -webkit-fill-available; /* Fix for mobile Safari */
+  }
+
+  .container {
+    padding: 0.5rem;
   }
 
   .wheel-section {
-    width: 100%;
-    padding: 1rem;
-    margin: 1rem 0;
+    width: calc(100% - 2rem);
+    padding: 1.5rem 1rem;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 0 0 1.5rem 0;
+    padding: 0 0.5rem;
+    line-height: 1.2;
   }
 
   .wheel-container {
-    margin: 1.5rem auto;
-    transform: scale(0.9);
+    margin: 2rem auto 1.5rem;
+    transform: scale(0.85);
+    transform-origin: center center;
   }
 
   .wheel-container:hover {
-    transform: scale(0.92);
+    transform: scale(0.87);
+  }
+
+  .arrow-container {
+    margin-bottom: -5px;
+    height: 24px;
   }
 
   button {
-    width: 80%;
-    padding: 0.8rem 1.5rem;
+    width: calc(100% - 2rem);
+    max-width: 280px;
+    padding: 1rem 1.5rem;
     font-size: 1rem;
+    margin: 1rem 0;
   }
 
   #result {
-    width: 90%;
-    font-size: 1.2rem;
-    padding: 0.8rem;
+    width: calc(100% - 2rem);
+    max-width: 280px;
+    font-size: 1.1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    line-height: 1.4;
+    box-sizing: border-box;
   }
 
   .arrow {
     font-size: 1.5rem;
+  }
+}
+
+/* Additional breakpoint for very small devices */
+@media screen and (max-width: 360px) {
+  .wheel-section {
+    padding: 1rem 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .wheel-container {
+    transform: scale(0.75);
+  }
+
+  .wheel-container:hover {
+    transform: scale(0.77);
+  }
+
+  button {
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+/* Fix for landscape mode */
+@media screen and (max-height: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .wheel-section {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .wheel-container {
+    margin: 1rem auto;
+  }
+
+  button {
+    margin: 0.5rem 0;
+  }
+
+  #result {
+    margin: 0.5rem 0;
   }
 }
