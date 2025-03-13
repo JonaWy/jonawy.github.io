@@ -1,10 +1,10 @@
 // Restaurant options with unique colors
 const restaurants = [
-  { name: "Vulcano", color: "#FF5733" },
-  { name: "Grieche", color: "#33FF57" },
-  { name: "Can", color: "#5733FF" },
-  { name: "Mr. Wasabi", color: "#FFD700" },
-  { name: "Mensa", color: "#FF33A6" },
+  { name: "Vulcano", color: "#2a9d8f" },
+  { name: "Grieche", color: "#264653" },
+  { name: "Can", color: "#e9c46a" },
+  { name: "Mr. Wasabi", color: "#f4a261" },
+  { name: "Mensa", color: "#e76f51" },
 ];
 
 const canvas = document.getElementById("wheel");
@@ -17,35 +17,40 @@ let spinning = false; // Prevent multiple spins at once
 
 // Function to draw the wheel
 function drawWheel() {
-  const sliceAngle = (2 * Math.PI) / restaurants.length; // Divide wheel into equal parts
+  const sliceAngle = (2 * Math.PI) / restaurants.length;
+  const radius = canvas.width / 2;
 
   for (let i = 0; i < restaurants.length; i++) {
     const startAngle = i * sliceAngle;
     const endAngle = startAngle + sliceAngle;
 
-    ctx.fillStyle = restaurants[i].color; // Use restaurant's color
+    // Draw slice
     ctx.beginPath();
-    ctx.moveTo(canvas.width / 2, canvas.height / 2);
-    ctx.arc(
-      canvas.width / 2,
-      canvas.height / 2,
-      canvas.width / 2,
-      startAngle,
-      endAngle
-    );
-    ctx.closePath();
+    ctx.moveTo(radius, radius);
+    ctx.arc(radius, radius, radius - 10, startAngle, endAngle);
+    ctx.fillStyle = restaurants[i].color;
     ctx.fill();
+    ctx.strokeStyle = "rgb(10, 41, 82)";
+    ctx.stroke();
 
-    // Add text
-    ctx.fillStyle = "black";
-    ctx.font = "16px Arial";
-    ctx.textAlign = "center";
+    // Draw text
     ctx.save();
-    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.translate(radius, radius);
     ctx.rotate(startAngle + sliceAngle / 2);
-    ctx.fillText(restaurants[i].name, canvas.width / 3, 5);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "white";
+    ctx.font = "bold 16px Inter";
+    ctx.fillText(restaurants[i].name, radius - 30, 5);
     ctx.restore();
   }
+
+  // Draw center circle
+  ctx.beginPath();
+  ctx.arc(radius, radius, 20, 0, 2 * Math.PI);
+  ctx.fillStyle = "#1a1a2e";
+  ctx.fill();
+  ctx.strokeStyle = "rgb(10, 41, 82)";
+  ctx.stroke();
 }
 
 // Function to spin the wheel with smooth acceleration and deceleration

@@ -4,24 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Restaurant Wheel of Fortune</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Restaurant Wheel of Fortune</h1>
+    <div class="container">
+      <div class="wheel-section">
+        <h1>Restaurant Wheel of Fortune</h1>
 
-    <!-- Arrow Indicator (Above and Rotated) -->
-    <div class="arrow-container">
-      <div class="arrow">&#9660;</div>
-      <!-- Downward arrow -->
+        <div class="arrow-container">
+          <div class="arrow">▼</div>
+        </div>
+
+        <div class="wheel-container">
+          <canvas id="wheel" width="300" height="300"></canvas>
+        </div>
+
+        <button id="spinButton">Spin the Wheel</button>
+        <p id="result">Click the button to spin!</p>
+      </div>
     </div>
-
-    <!-- Wheel Canvas -->
-    <div class="wheel-container">
-      <canvas id="wheel" width="300" height="300"></canvas>
-    </div>
-
-    <button id="spinButton">Spin the Wheel</button>
-    <p id="result">Click the button to spin!</p>
 
     <script src="script.js"></script>
   </body>
