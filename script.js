@@ -1,10 +1,10 @@
-// Restaurant options with unique colors
+// Restaurant options with gradient colors
 const restaurants = [
-  { name: "Vulcano", color: "#0d419d" }, // Darker blue
-  { name: "Grieche", color: "#1f6feb" }, // GitHub blue
-  { name: "Can", color: "#58a6ff" }, // Lighter blue
-  { name: "Mr. Wasabi", color: "#388bfd" }, // Medium blue
-  { name: "Mensa", color: "#79c0ff" }, // Lightest blue
+  { name: "Vulcano", gradient: ["#0d419d", "#1f6feb"] },
+  { name: "Grieche", gradient: ["#1f6feb", "#388bfd"] },
+  { name: "Can", gradient: ["#388bfd", "#58a6ff"] },
+  { name: "Mr. Wasabi", gradient: ["#58a6ff", "#79c0ff"] },
+  { name: "Mensa", gradient: ["#79c0ff", "#a5d5ff"] },
 ];
 
 const canvas = document.getElementById("wheel");
@@ -24,11 +24,23 @@ function drawWheel() {
     const startAngle = i * sliceAngle;
     const endAngle = startAngle + sliceAngle;
 
+    // Create gradient
+    const gradient = ctx.createRadialGradient(
+      radius,
+      radius,
+      0,
+      radius,
+      radius,
+      radius - 10
+    );
+    gradient.addColorStop(0, restaurants[i].gradient[0]);
+    gradient.addColorStop(1, restaurants[i].gradient[1]);
+
     // Draw slice
     ctx.beginPath();
     ctx.moveTo(radius, radius);
     ctx.arc(radius, radius, radius - 10, startAngle, endAngle);
-    ctx.fillStyle = restaurants[i].color;
+    ctx.fillStyle = gradient;
     ctx.fill();
     ctx.strokeStyle = "#30363d"; // GitHub border color
     ctx.stroke();
@@ -93,10 +105,10 @@ function spinWheel() {
   animate();
 }
 
-// Add confetti configuration
+// Update confetti colors to match new gradients
 const confetti = {
   particles: [],
-  colors: ["#0d419d", "#1f6feb", "#58a6ff", "#79c0ff"],
+  colors: ["#0d419d", "#1f6feb", "#58a6ff", "#79c0ff", "#a5d5ff"],
 
   createParticle() {
     return {
