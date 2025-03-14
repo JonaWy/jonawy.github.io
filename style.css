@@ -1,5 +1,6 @@
 :root {
-  --primary: #1f6feb; /* Changed from #238636 to GitHub blue */
+  /* Changed from #238636 to GitHub blue */
+  --primary: #1f6feb;
   --secondary: #30363d;
   --accent: #58a6ff;
   --background: #0d1117;
@@ -33,6 +34,7 @@ h1 {
   margin: 0 0 2rem 0;
   background: linear-gradient(45deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
 }
@@ -160,12 +162,8 @@ button:active {
   }
 }
 
-.wheel-segment:nth-child(odd) {
-  background-color: #87cefa; /* hellblau */
-}
-
 .wheel-segment:nth-child(even) {
-  background-color: #1e90ff; /* blau */
+  background-color: #1e90ff; /* blue */
 }
 
 /* Mobile Optimization */
